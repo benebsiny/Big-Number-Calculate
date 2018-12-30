@@ -10,13 +10,13 @@ int main(){
     int count = 0;
     while(scanf("%d",&count)!=EOF){
 
-        char sum[101];
-        memset(sum,'\0',101);
+        char sum[10001];
+        memset(sum,'\0',10001);
 
 
         while(count--){
-            char input[101];
-            memset(input,'\0',101);
+            char input[10001];
+            memset(input,'\0',10001);
 
             scanf("%s",input);
 
