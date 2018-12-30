@@ -1,3 +1,0 @@
-C:/Users/classroom/Desktop/Program/C/Big-Number-Calculate/cmake-build-debug/CMakeFiles/Big_Number_Calculate.dir
-C:/Users/classroom/Desktop/Program/C/Big-Number-Calculate/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/classroom/Desktop/Program/C/Big-Number-Calculate/cmake-build-debug/CMakeFiles/rebuild_cache.dir
