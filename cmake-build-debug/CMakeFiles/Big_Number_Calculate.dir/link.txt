@@ -1,0 +1,3 @@
+"C:\Program Files\JetBrains\CLion 2018.3.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\Big_Number_Calculate.dir/objects.a
+C:\MinGW\bin\ar.exe cr CMakeFiles\Big_Number_Calculate.dir/objects.a @CMakeFiles\Big_Number_Calculate.dir\objects1.rsp
+C:\MinGW\bin\gcc.exe -g   -Wl,--whole-archive CMakeFiles\Big_Number_Calculate.dir/objects.a -Wl,--no-whole-archive  -o Big_Number_Calculate.exe -Wl,--out-implib,libBig_Number_Calculate.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Big_Number_Calculate.dir\linklibs.rsp
