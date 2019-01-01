@@ -11,102 +11,129 @@ int main(){
     int count = 0;
     while(scanf("%d",&count)!=EOF){
 
+        //Result char
         char sum[10001];
         memset(sum,'\0',10001);
 
+        //Factorial mode
+        if(count < 0){
+            int i,k;
 
-        while(count--){
-            char input[10001];
-            memset(input,'\0',10001);
+            count *= -1; //Make it positive
 
-            scanf("%s",input);
+            sum[0] = '1';//Initial number
 
-            /*******minus******/
-            if(input[0]=='-'){
+            //Multiply from 2 to n
+            for (i=2,k=0; i<=count; i++,k=0){
+                char iChar[11];
+                memset(iChar,'\0',11);
 
-                //-1-1=-2
-                if(sum[strlen(sum)-1]=='-'){
-
-                    //Let sum's negative sign disappeared
-                    sum[strlen(sum)-1] = '\0';
-
-                    plus(sum,input);
-
-                    sum[strlen(sum)] = '-';
+                //Turn int to char
+                int i_temp = i;
+                while (i_temp){
+                    iChar[k++] = i_temp % 10 + 48;
+                    i_temp /= 10;
                 }
+                reverse(iChar);
 
-                else{ //+1-2=-1
-                    minus(sum,input);
-                }
-
+                multiply(sum,iChar);
             }
-            /*******plus******/
-            else if (48 <= input[0] && input[0] <= 57){
+        }
 
-                //-10+5 = -5
-                if(sum[strlen(sum)-1]=='-'){
+        //Calculation mode
+        else{
+            while(count--){
+                char input[10001];
+                memset(input,'\0',10001);
 
-                    //Let sum's negative sign disappeared
-                    sum[strlen(sum)-1] = '\0';
+                scanf("%s",input);
 
-                    minus(sum,input);
+                /*******minus******/
+                if(input[0]=='-'){
 
-                    //If the result is negative, make it positive
+                    //-1-1=-2
                     if(sum[strlen(sum)-1]=='-'){
-                        sum[strlen(sum)-1] = '\0';
+
+                        sum[strlen(sum)-1] = '\0'; //Let sum's negative sign disappeared
+                        plus(sum,input);
+                        sum[strlen(sum)] = '-';
                     }
 
-                    //If 0, don't add negative sign
-                    else if(!strcmp(sum,"0")){
-                        sum[strlen(sum)-1] = '0';
-                    }
-
-                    //If positive, make it negative
+                    //+1-2=-1
                     else{
-                        sum[strlen(sum)] = '-';
+                        minus(sum,input);
                     }
 
                 }
-                //+10+10=+20
-                else{
-                    plus(sum,input);
-                }
-            }
-            /*******multiply******/
-            if (input[0]=='*'){
-                if (input[1] == '-'){
+                    /*******plus******/
+                else if (48 <= input[0] && input[0] <= 57){
 
-                    //-2 * -3 = 6
-                    if (sum[strlen(sum)-1] == '-'){
+                    //-10+5 = -5
+                    if(sum[strlen(sum)-1]=='-'){
+
+                        //Let sum's negative sign disappeared
                         sum[strlen(sum)-1] = '\0';
-                        multiply(sum,input);
+
+                        minus(sum,input);
+
+                        //If the result is negative, make it positive
+                        if(sum[strlen(sum)-1]=='-'){
+                            sum[strlen(sum)-1] = '\0';
+                        }
+
+                        //If 0, don't add negative sign
+                        else if(!strcmp(sum,"0")){
+                            sum[strlen(sum)-1] = '0';
+                        }
+
+                        //If positive, make it negative
+                        else{
+                            sum[strlen(sum)] = '-';
+                        }
+
                     }
-                    // 2 * -3 = -6
+
+                    //+10+10=+20
                     else{
-                        multiply(sum,input);
-                        sum[strlen(sum)] = '-';
+                        plus(sum,input);
                     }
-
                 }
-                else{
-                    //-2 * 3 = -6
-                    if (sum[strlen(sum)-1] == '-'){
-                        sum[strlen(sum)-1] = '\0';
-                        multiply(sum,input);
-                        sum[strlen(sum)] = '-';
+                /*******multiply******/
+                if (input[0]=='*'){
+                    if (input[1] == '-'){
+
+                        //-2 * -3 = 6
+                        if (sum[strlen(sum)-1] == '-'){
+
+                            sum[strlen(sum)-1] = '\0';
+                            multiply(sum,input);
+                        }
+                        // 2 * -3 = -6
+                        else{
+                            multiply(sum,input);
+                            sum[strlen(sum)] = '-';
+                        }
+
                     }
-                    //2 * 3 = 6
-                    else {
-                        multiply(sum,input);
+                    else{
+                        //-2 * 3 = -6
+                        if (sum[strlen(sum)-1] == '-'){
+
+                            sum[strlen(sum)-1] = '\0';
+                            multiply(sum,input);
+                            sum[strlen(sum)] = '-';
+                        }
+                        //2 * 3 = 6
+                        else {
+                            multiply(sum,input);
+                        }
                     }
                 }
             }
         }
-
         reverse(sum);
         printf("%s\n",sum);
     }
-
     return 0;
 }
 
@@ -167,7 +194,6 @@ void minus(char *sum,char *input){
 
         strcpy(sum,minusNeg);
     }
-
 
 }
 
@@ -257,7 +283,6 @@ void multiply(char *sum, char* input){
     }
 
     strcpy(sum, temp);
-
 }
 
 
@@ -292,7 +317,7 @@ void reverse(char *input){
             input[i] = temp[j];
         }
 
-        //Let multiply sign disappeared
+        //Let multiplication sign disappeared
         input[strlen(temp)-1] = '\0';
     }
 
@@ -302,8 +327,9 @@ void reverse(char *input){
             input[i] = temp[j];
         }
 
-        //Let multiply sign disappeared
+        //Let multiplication and negative sign disappeared
         input[strlen(temp)-1] = '\0';
         input[strlen(temp)-2] = '\0';
     }
+
 }
